@@ -1,9 +1,10 @@
-package com.dragon.test.netty.service;
+package com.dragon.test.netty.service.nio2;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.oio.OioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 public class DoMainTest {
@@ -25,7 +26,9 @@ public class DoMainTest {
                     .childHandler(new HttpServerInitializer());
             ChannelFuture channelFuture = sbs.bind(9990)//绑定到9990端口
                     .sync();//sync表示用于阻塞当前Thread，一直到端口绑定操作完成
+            System.out.println("doTest");
             channelFuture.channel().closeFuture().sync();//该方法将会阻塞等待直到服务器的Channel关闭
+            System.out.println("doTest");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

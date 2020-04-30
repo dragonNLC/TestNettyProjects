@@ -1,6 +1,6 @@
 package com.dragon.test.netty;
 
-import com.dragon.test.netty.service.DoMainTest;
+import com.dragon.test.netty.service.nio2.DoMainTest;
 
 import org.junit.Test;
 

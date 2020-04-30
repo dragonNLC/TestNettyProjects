@@ -1,4 +1,4 @@
-package com.dragon.test.netty.service;
+package com.dragon.test.netty.service.nio2;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -14,6 +14,7 @@ import io.netty.util.CharsetUtil;
 
 public class HttpServerHandler extends SimpleChannelInboundHandler<HttpObject> {
 
+    //前面对数据处理完毕后，会调用我们自己的处理handler，我们对请求的数据进行处理，并通过response返回数据给client
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, HttpObject msg) throws Exception {
         if (msg instanceof HttpRequest) {
@@ -30,6 +31,7 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<HttpObject> {
             ctx.channel().close();
         }
     }
+
 
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {

@@ -1,4 +1,4 @@
-package com.dragon.test.netty.service;
+package com.dragon.test.netty.service.nio2;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
@@ -12,6 +12,8 @@ public class HttpServerInitializer extends ChannelInitializer<SocketChannel> {
         ChannelPipeline pipeline = ch.pipeline();
         //http服务关键handler，用于http消息的编解码
         pipeline.addLast("httpServerCodec", new HttpServerCodec());
+        //HttpServerCodec内部封装了HttpRequestDecoder与HttpResponseEncoder
+
         //自定义的handler，添加自定义的ChannelHandler
         pipeline.addLast("testHttpServerHandler", new HttpServerHandler());
         //链式，所有请求都会经过上面的ChannelHandler处理
