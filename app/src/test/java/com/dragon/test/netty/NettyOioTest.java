@@ -1,9 +1,13 @@
 package com.dragon.test.netty;
 
+import com.dragon.test.netty.service.nio0.NettyClient1;
+import com.dragon.test.netty.service.nio0.NettyServer0;
+import com.dragon.test.netty.service.nio0.NettyServer1;
 import com.dragon.test.netty.service.nio1.NettyNioServer;
 import com.dragon.test.netty.service.nio1.NettyOioServer;
 import com.dragon.test.netty.service.niosk.LiveMessage;
 import com.dragon.test.netty.service.niosk.NioSocketServer;
+import com.dragon.test.netty.service.server.WorkThread;
 
 import org.junit.Test;
 
@@ -86,6 +90,26 @@ public class NettyOioTest {
         for (int i = 0; i < readByte; i++) {
             System.out.println("read [" + ibf.get() + "]");
         }
+    }
+
+    @Test
+    public void testNettyServer0() {
+        new NettyServer0().connect(8080);
+    }
+
+    @Test
+    public void testNettyServer1() throws InterruptedException {
+        new NettyServer1().start(9999);
+    }
+
+    @Test
+    public void testNettyClient1() throws InterruptedException {
+        new NettyClient1().client("127.0.0.1", 9999);
+    }
+
+    @Test
+    public void testWorkThread() throws InterruptedException {
+        new WorkThread().run();
     }
 
 }

@@ -17,6 +17,7 @@ public class HttpServerInitializer extends ChannelInitializer<SocketChannel> {
         //自定义的handler，添加自定义的ChannelHandler
         pipeline.addLast("testHttpServerHandler", new HttpServerHandler());
         //链式，所有请求都会经过上面的ChannelHandler处理
+
     }
 
 }
